@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <div class="container py-5">
+    <h5>{{ product.name }}</h5>
+     {% if product.photo %}
+         <div align="left" style="margin: 25px">
+            <img class="product-img-mid" src="{{ product.photo.url }}" alt="Photo" height="250px">
+         </div>
+     {% else %}
+         <div align="left" style="margin: 25px">
+         </div>
+     {% endif %}
+    <p>Характеристики:</p>
+    <p>{{ product.specifications|linebreaks }}</p>
+    <div class="product-price">
+        <p>Цена: {{ product.price }}</p>
+    </div>
+    <a href="{% url 'shop:product_edit' product.id %}"><button class="btn btn-dark">Изменить</button></a>
+     <a href="{% url 'shop:product_delete' product.id %}"><button class="btn btn-dark">Удалить</button></a>
+ </div>
+{% endblock %}

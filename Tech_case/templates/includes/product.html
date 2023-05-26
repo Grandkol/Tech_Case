@@ -1,0 +1,24 @@
+
+    <div class="row", style="margin-bottom: 15px">
+      <div class="col-sm-6 mb-4 mb-sm-0">
+        <div class="card" style= "width: 280px; height: 700px">
+            {% if product.photo %}
+                <div align="center" style="margin: 20px">
+                    <img src="{{ product.photo.url }}" class="card-img-top" height="250px">
+                </div>
+            {% else %}
+                 <div align="left" style="margin: 25px">
+                 </div>
+            {% endif %}
+            <div class="card-body">
+             <h5 class="card-title">{{ product.name }}</h5>
+                <h6 class="card-text">{{ product.price }} р.</h6>
+              <p class="card-text" align="left">{{ product.specifications|truncatechars:220 }}</p>
+                <div class="position-absolute bottom-0 start-0 " style="margin: 15px">
+              <a href="{% url 'shop:product_detail' product.id %}" class="btn btn-primary ">Страница товара</a>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <br>
