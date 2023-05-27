@@ -6,6 +6,7 @@ django-filter==23.2
 djangorestframework==3.14.0
 flake8==6.0.0
 generics==6.0.0
+gunicorn==20.1.0
 mccabe==0.7.0
 mypy-extensions==1.0.0
 packaging==23.1

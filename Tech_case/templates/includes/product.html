@@ -3,8 +3,10 @@
       <div class="col-sm-6 mb-4 mb-sm-0">
         <div class="card" style= "width: 280px; height: 700px">
             {% if product.photo %}
-                <div align="center" style="margin: 20px">
-                    <img src="{{ product.photo.url }}" class="card-img-top" height="250px">
+                <div  align="center" style="margin: 10px; width: 250px; height: 230px" >
+                    <br>
+                    <img src="{{ product.photo.url }}" class="card-img-top" style='max-height: 210px;
+                    background-size: cover; max-width: 200px'>
                 </div>
             {% else %}
                  <div align="left" style="margin: 25px">
