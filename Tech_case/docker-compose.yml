@@ -1,27 +1,23 @@
 version: "3.9"
 
 services:
-  localhost:
+  db:
     image: postgres:15
-    container_name: localhost
+    container_name: db
     volumes:
-      - ~/.pg/pg_data/tc:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - Tech_case/.env
-  Test_Case:
-    image: docker_test:latest
-    container_name: docker_test
+      - ./.env
+  Tech_Case:
+    image: docker_test2:latest
+    container_name: docker_test2
+    ports:
+      - 8000:8000
     depends_on:
-      - localhost
-    volumes:
-      - static_volume:/tc/static
-      - media_volume:/tc/media
+      - db
     env_file:
-      - Tech_case/.env
-    command: >
-      bash -c "./manage.py collectstatic --noinput && ./manage.py migrate  && manage.py runserver -b 0.0.0.0:8000 Tech_case.wsgi:application"
-
+      - ./.env
+    command: python manage.py runserver 0.0.0.0:8000
 
 volumes:
-  static_volume:
-  media_volume:
+  postgres_data:
