@@ -5,19 +5,27 @@ services:
     image: postgres:15
     container_name: db
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
+      - ~/.pg/pg_data/tc:/var/lib/postgresql/data
     env_file:
-      - ./.env
+      - .env
   Tech_Case:
     image: docker_test2:latest
     container_name: docker_test2
+    volumes:
+      - static_volume:/tc/static
+      - media_volume:/tc/media
+    restart: always
     ports:
       - 8000:8000
     depends_on:
       - db
     env_file:
-      - ./.env
-    command: python manage.py runserver 0.0.0.0:8000
+      - .env
+    command: >
+      bash -c "./manage.py collectstatic --noinput --clear && ./manage.py migrate  && gunicorn -b 0.0.0.0:8000 Tech_case.wsgi:application"
+
 
 volumes:
   postgres_data:
+  static_volume:
+  media_volume:

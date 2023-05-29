@@ -122,7 +122,9 @@ LANGUAGE_CODE = "ru"
 
 TIME_ZONE = "UTC"
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = "/static/"
 
 
